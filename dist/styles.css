@@ -27,4 +27,41 @@ h1,h2,h3{text-wrap:balance}
   .hero--behemoth .hero-shade{background:linear-gradient(180deg,transparent 180px,rgba(7,24,29,.12) 280px,rgba(7,24,29,.88) 400px,#07181d 460px)}
   .hero--behemoth .hero-content{padding-top:355px}
 }
+/* Golden crossed-swords identity: preserve the complete transparent crest. */
+.site-header{height:96px}
+.site-header .brand,.site-header .brand img{width:168px}
+.site-header .brand span{display:none}
+.desktop-nav a{line-height:96px}
+.mobile-nav{top:100%}
+.site-footer>.brand,.site-footer .brand img{width:260px}
+.hero--golden .hero-content{padding-top:28px}
+.hero--golden .hero-content>.eyebrow{margin:0 0 14px}
+.hero--golden h1.hero-logo{width:min(520px,52vw);margin:0 0 18px;line-height:1}
+.hero-logo img{width:100%;height:auto;filter:drop-shadow(0 5px 16px #020b10a6)}
+.hero-tagline{font-family:var(--serif);font-size:clamp(25px,2.3vw,32px);font-weight:600;line-height:1.7;letter-spacing:.04em;margin:0 0 12px;text-shadow:0 2px 20px #081a20}
+.hero-tagline span{color:var(--gold-light);white-space:nowrap}
+.hero-tagline-break{display:none}
+.hero--golden .hero-description{margin:0}
+.hero--golden .hero-actions{margin-top:28px}
+.hero--golden .hero-platform{margin-top:22px}
+@media(max-width:900px){
+  .site-header{height:84px}
+  .site-header .brand,.site-header .brand img{width:148px}
+  .hero--golden h1.hero-logo{width:min(450px,65vw)}
+}
+@media(max-width:640px){
+  .site-header{height:80px}
+  .site-header .brand,.site-header .brand img{width:140px}
+  .hero--golden .hero-content{padding-top:330px}
+  .hero--golden .hero-content>.eyebrow{display:none}
+  .hero--golden h1.hero-logo{width:100%;max-width:430px;margin-bottom:22px}
+  .hero-tagline{font-size:25px;max-width:430px;line-height:1.7}
+  .hero-tagline-break{display:block}
+  .site-footer>.brand,.site-footer .brand img{width:220px}
+}
+@media(max-width:370px){
+  .site-header{height:76px}
+  .site-header .brand,.site-header .brand img{width:124px}
+  .hero-tagline{font-size:23px}
+}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}}
