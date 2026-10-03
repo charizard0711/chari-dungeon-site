@@ -1,0 +1,12 @@
+{
+  "name": "chari-dungeon-official-site",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "ちゃりだんじょん公式サイト",
+  "scripts": {
+    "dev": "node scripts/serve.mjs",
+    "start": "node scripts/serve.mjs",
+    "check": "node scripts/check.mjs"
+  }
+}
