@@ -43,17 +43,15 @@
 .banner-updates { background: #0c252c; }
 .banner-updates .banner-art { object-position: 55% center; }
 .banner-updates .banner-shade { background: linear-gradient(90deg,#0c252c 0%,#0c252cf0 22%,#0c252cb0 43%,#0c252c00 78%); }
-.carousel-controls { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: 17px; }
-.carousel-pagination, .carousel-actions { display: flex; align-items: center; gap: 10px; }
-.carousel-dot { border: 0; background: none; padding: 12px 3px; min-height: 44px; color: #718184; }
-.carousel-dot span { display: block; height: 3px; width: 30px; background: currentColor; transition: width .25s, color .25s; }
+.carousel-controls { position: relative; display: flex; align-items: center; justify-content: center; padding-top: 12px; }
+.carousel-pagination { display: flex; align-items: center; }
+.carousel-dot { display: grid; place-items: center; border: 0; background: none; padding: 0; width: 44px; height: 44px; color: #718184; }
+.carousel-dot span { display: block; height: 8px; width: 8px; border-radius: 50%; background: currentColor; transition: transform .25s, color .25s, box-shadow .25s; }
 .carousel-dot[aria-current="true"] { color: var(--gold); }
-.carousel-dot[aria-current="true"] span { width: 58px; }
-.carousel-counter { font: 14px/1.5 Georgia,serif; color: #99acb0; letter-spacing: .1em; margin-right: 12px; white-space: nowrap; }
-.carousel-counter strong { font-weight: 400; color: #efdaa4; }
-.carousel-direction, .carousel-pause { min-height: 44px; padding: 8px 15px; border: 1px solid #74878865; background: transparent; font-size: 14px; color: #d9e0db; }
-.carousel-pause { border-color: transparent; color: #acbbbd; min-width: 88px; }
-.carousel-direction:hover, .carousel-pause:hover { background: #1e3339; color: var(--gold-light); }
+.carousel-dot[aria-current="true"] span { transform: scale(1.25); box-shadow: 0 0 0 4px #d8b9791a; }
+.carousel-dot:hover { color: var(--gold-light); }
+/* Keep playback control available to keyboard and screen-reader users. */
+.carousel-pause:focus-visible { position: absolute; top: 15px; right: 0; width: auto; height: auto; clip: auto; clip-path: none; overflow: visible; white-space: normal; margin: 0; padding: 8px 12px; border: 1px solid var(--line); background: #10262d; color: #efdaa4; font-size: 14px; z-index: 1; }
 
 /* A coming-soon event page, without fictional dates or rewards. */
 .event-stage { position: relative; isolation: isolate; min-height: 780px; overflow: hidden; background: #211a2b; }
@@ -113,14 +111,7 @@
   .banner-updates .banner-art { object-position: 64% center; }
   .banner-updates .banner-shade { background: linear-gradient(180deg,transparent 95px,#0c252c66 175px,#0c252c 285px); }
   .banner-updates .banner-status { background: #0c252cc9; }
-  .carousel-controls { gap: 8px; flex-wrap: wrap; padding-top: 10px; }
-  .carousel-pagination { gap: 4px; }
-  .carousel-dot span { width: 16px; }
-  .carousel-dot[aria-current="true"] span { width: 30px; }
-  .carousel-actions { gap: 5px; }
-  .carousel-counter { display: none; }
-  .carousel-pause { min-width: 74px; font-size: 12px; padding: 8px 7px; }
-  .carousel-direction { font-size: 12px; padding: 8px 9px; }
+  .carousel-controls { padding-top: 8px; }
   .event-stage { min-height: 935px; }
   .event-art { height: 470px; object-position: right center; }
   .event-shade { background: linear-gradient(180deg,#211a2b52,transparent 130px,transparent 255px,#211a2b 460px); }
@@ -141,8 +132,6 @@
   .banner-copy { padding-inline: 19px; }
   .banner h3 { font-size: 27px; }
   .banner-copy > p:not(.banner-kicker) { font-size: 14px; }
-  .carousel-controls { justify-content: center; }
-  .carousel-dot span { width: 18px; }
   .event-coming { font-size: 65px; }
 }
 @media(prefers-reduced-motion:reduce) {

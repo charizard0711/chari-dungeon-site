@@ -70,12 +70,10 @@ if (carousel) {
   const slides = [...carousel.querySelectorAll('.banner')];
   const dots = [...carousel.querySelectorAll('[data-slide]')];
   const pause = carousel.querySelector('.carousel-pause');
-  const counter = carousel.querySelector('.carousel-counter strong');
   const announcement = carousel.querySelector('.carousel-announcement');
   const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
   let current = 0;
   let stopped = reducedMotion.matches;
-  let hovered = false;
   let inView = false;
   let timer;
   let pointerStart;
@@ -83,8 +81,10 @@ if (carousel) {
 
   function schedule() {
     clearTimeout(timer);
-    if (!stopped && !hovered && inView && !document.hidden) {
-      timer = setTimeout(() => show(current + 1), 7000);
+    const focused = document.activeElement;
+    const reading = viewport.contains(focused) || (focused !== pause && carousel.contains(focused) && focused.matches(':focus-visible'));
+    if (!stopped && !reading && !pointerStart && inView && !document.hidden) {
+      timer = setTimeout(() => show(current + 1), 5000);
     }
   }
   function updatePlayback() {
@@ -95,7 +95,6 @@ if (carousel) {
   function show(index, manual = false) {
     const focusWasOnSlide = slides[current].contains(document.activeElement);
     current = (index + slides.length) % slides.length;
-    if (manual) stopped = true;
     track.style.transform = `translateX(-${current * 100}%)`;
     slides.forEach((slide, i) => {
       slide.inert = i !== current;
@@ -105,7 +104,6 @@ if (carousel) {
       if (i === current) dot.setAttribute('aria-current', 'true');
       else dot.removeAttribute('aria-current');
     });
-    counter.textContent = String(current + 1).padStart(2, '0');
     if (manual) {
       announcement.textContent = slides[current].getAttribute('aria-label');
       if (focusWasOnSlide) slides[current].querySelector('a').focus({ preventScroll: true });
@@ -117,24 +115,19 @@ if (carousel) {
   carousel.querySelector('.carousel-controls').hidden = false;
   show(0);
   dots.forEach(dot => dot.addEventListener('click', () => show(Number(dot.dataset.slide), true)));
-  carousel.querySelectorAll('[data-direction]').forEach(button => {
-    button.addEventListener('click', () => show(current + Number(button.dataset.direction), true));
-  });
   pause.addEventListener('click', () => { stopped = !stopped; updatePlayback(); });
-  carousel.addEventListener('focusin', event => {
-    if (event.target !== pause) { stopped = true; updatePlayback(); }
-  });
-  viewport.addEventListener('pointerenter', event => {
-    if (event.pointerType === 'mouse') { hovered = true; schedule(); }
-  });
-  viewport.addEventListener('pointerleave', () => { hovered = false; schedule(); });
+  carousel.addEventListener('focusin', schedule);
+  carousel.addEventListener('focusout', () => queueMicrotask(schedule));
   carousel.addEventListener('keydown', event => {
     if (event.altKey || event.ctrlKey || event.metaKey) return;
     const next = { ArrowLeft: current - 1, ArrowRight: current + 1, Home: 0, End: slides.length - 1 }[event.key];
     if (next !== undefined) { event.preventDefault(); show(next, true); }
   });
   viewport.addEventListener('pointerdown', event => {
-    if (event.isPrimary && event.button === 0) pointerStart = { x: event.clientX, y: event.clientY, id: event.pointerId };
+    if (event.isPrimary && event.button === 0) {
+      pointerStart = { x: event.clientX, y: event.clientY, id: event.pointerId };
+      schedule();
+    }
   }, { passive: true });
   viewport.addEventListener('pointerup', event => {
     if (!pointerStart || pointerStart.id !== event.pointerId) return;
@@ -145,16 +138,17 @@ if (carousel) {
       suppressClickUntil = Date.now() + 400;
       show(current + (dx < 0 ? 1 : -1), true);
     }
+    schedule();
   });
-  viewport.addEventListener('pointercancel', () => { pointerStart = undefined; });
+  const endGesture = () => { pointerStart = undefined; schedule(); };
+  viewport.addEventListener('pointercancel', endGesture);
+  viewport.addEventListener('pointerleave', endGesture);
   viewport.addEventListener('dragstart', event => event.preventDefault());
   viewport.addEventListener('click', event => {
     if (Date.now() < suppressClickUntil) { event.preventDefault(); event.stopPropagation(); }
   }, true);
   document.addEventListener('visibilitychange', schedule);
-  reducedMotion.addEventListener('change', event => {
-    if (event.matches) { stopped = true; updatePlayback(); }
-  });
+  reducedMotion.addEventListener('change', event => { stopped = event.matches; updatePlayback(); });
   new IntersectionObserver(entries => {
     inView = entries[0].intersectionRatio >= 0.35;
     schedule();
