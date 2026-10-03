@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#07181d">
+  <meta name="description" content="ちゃりだんじょんの世界と遊び方。全30階層のダンジョン、武器ごとのスキル、はじめての冒険ガイドを紹介します。">
+  <title>ゲーム紹介 | ちゃりだんじょん公式サイト</title>
+  <link rel="icon" href="assets/favicon.png" type="image/png">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="pages.css">
+  <script type="module" src="main.js"></script>
+</head>
+<body class="game-page">
+  <a class="skip-link" href="#main">本文へ移動</a>
+  <header class="site-header">
+    <a class="brand" href="./" aria-label="ちゃりだんじょん ホーム"><img src="assets/game-logo.webp" alt="ちゃりだんじょん" width="1000" height="158"><span>OFFICIAL WEBSITE</span></a>
+    <nav class="desktop-nav" aria-label="メインナビゲーション"><a href="game.html" aria-current="page">ゲーム紹介</a><a href="patch-notes.html">パッチノート</a><a href="events.html">イベント情報</a></nav>
+    <a class="button button-small" href="https://charizard0711.github.io/chari-dungeon/" target="_blank" rel="noopener noreferrer">今すぐプレイ</a>
+    <button class="menu-toggle" aria-label="メニューを開く" aria-expanded="false" aria-controls="mobile-nav"><span></span><span></span></button>
+    <nav id="mobile-nav" class="mobile-nav" aria-label="モバイルナビゲーション" hidden><a href="game.html" aria-current="page">ゲーム紹介</a><a href="patch-notes.html">パッチノート</a><a href="events.html">イベント情報</a></nav>
+  </header>
+  <main id="main">
+    <section class="page-masthead game-masthead" aria-labelledby="game-title"><div class="wrap"><nav class="breadcrumb" aria-label="パンくずリスト"><a href="./">ホーム</a><span aria-hidden="true">/</span><span aria-current="page">ゲーム紹介</span></nav><p class="eyebrow">WELCOME, ADVENTURER</p><h1 id="game-title">ゲーム紹介</h1><p>一手を考える。装備を選ぶ。まだ見ぬ階層へ。</p><nav class="page-sections" aria-label="ゲーム紹介の目次"><a href="#about">ちゃりだんじょんとは</a><a href="#world">ダンジョン</a><a href="#weapons">装備</a><a href="#guide">遊び方</a></nav></div></section>
+    <section class="about section-light" id="about" aria-labelledby="about-title"><div class="wrap about-grid">
+      <div class="about-copy"><p class="eyebrow dark">THINK. CHOOSE. SURVIVE.</p><h2 id="about-title">たった一歩に、<br>無限の選択を。</h2><p>進むか。戦うか。いったん退くか。<br>ちゃりだんじょんは、自分のペースで一手を考える、ターン制ローグライク。</p><p>拾った武器を使いこなし、装備を育て、待ち受けるボスに挑もう。その選択が、次の階への道をつくる。</p><a class="underlined-link" href="#guide">はじめての冒険ガイド</a></div>
+      <figure class="gameplay-frame"><img src="assets/gameplay.webp" alt="ちゃりだんじょんの実際のゲーム画面。遺跡で探索を始める冒険者" width="1280" height="800" loading="lazy"><figcaption><span class="tiny-diamond" aria-hidden="true"></span> IN-GAME SCREENSHOT <span>ちゃりだんじょん ゲーム画面</span></figcaption></figure>
+    </div></section>
+    <section class="world" id="world" aria-labelledby="world-title">
+      <img class="world-art" src="assets/world.webp" alt="青緑の水に沈んだ大聖堂と、霧の奥にたたずむ竜" width="1672" height="941" loading="lazy"><div class="world-shade"></div>
+      <div class="wrap world-content"><div><p class="eyebrow">INTO THE DEPTHS</p><h2 id="world-title">深く潜るほど、<br>世界は牙をむく。</h2><p>水路、氷の広間、灼熱の火山。<br>景色が変われば、戦い方も変わる。<br>行き着く先で、待ち受けるものは。</p><div class="depth-stat"><strong>30</strong><div><span>FLOORS TO EXPLORE</span><p>全30階層のダンジョン</p></div></div></div><p class="world-side-label">BEYOND THE UNKNOWN</p></div>
+      <div class="wrap world-regions"><div><span>01 — 10F</span><h3>遺跡と水の領域</h3><p>苔むす石壁の先、沈んだ砦へ。</p></div><div><span>11 — 20F</span><h3>氷と炎の領域</h3><p>凍てつく広間から、灼熱の戦場へ。</p></div><div><span>21 — 30F</span><h3>雷鳴と深淵の領域</h3><p>嵐を越え、万象の竜座を目指す。</p></div></div>
+      <span class="art-note">WORLD CONCEPT ART</span>
+    </section>
+    <section class="weapons" id="weapons" aria-labelledby="weapons-title"><div class="wrap weapon-grid">
+      <div class="weapon-intro"><p class="eyebrow">FIND YOUR FIGHTING STYLE</p><h2 id="weapons-title">その手に、<br>自分だけの<span>切り札を。</span></h2><p>一撃に賭けるか、間合いを制するか。<br>武器ごとのスキルが、戦いの可能性を広げる。</p><div class="weapon-tabs" role="tablist" aria-label="武器の紹介"><button id="tab-arcadia" type="button" role="tab" aria-selected="true" aria-controls="weapon-panel" data-weapon="arcadia"><img src="assets/arcadia.png" alt="" width="256" height="256"><span>大剣</span></button><button id="tab-bow" type="button" role="tab" aria-selected="false" aria-controls="weapon-panel" data-weapon="bow" tabindex="-1"><img src="assets/bow.png" alt="" width="256" height="256" loading="lazy"><span>弓</span></button><button id="tab-dagger" type="button" role="tab" aria-selected="false" aria-controls="weapon-panel" data-weapon="dagger" tabindex="-1"><img src="assets/dagger.png" alt="" width="256" height="256" loading="lazy"><span>短剣</span></button></div><p class="weapon-footnote">大剣・長剣・槍・弓・拳銃・短剣・双剣の7系統</p></div>
+      <div class="weapon-panel" id="weapon-panel" role="tabpanel" aria-labelledby="tab-arcadia" tabindex="0"><div class="weapon-display"><div class="weapon-orbit" aria-hidden="true"></div><span class="weapon-numeral" aria-hidden="true">I</span><img id="weapon-image" src="assets/arcadia.png" alt="覇天剣アルカディア" width="256" height="256" loading="lazy"></div><div class="weapon-caption" aria-live="polite"><p id="weapon-kicker" class="eyebrow">THE RADIANT GREATSWORD</p><h3 id="weapon-name">覇天剣アルカディア</h3><p id="weapon-description">攻撃を当てるたび、HPを10回復する光の大剣。</p><div class="weapon-skill"><span>WEAPON SKILL</span><strong id="weapon-skill-name">旋風斬り</strong><p id="weapon-skill-description">周囲8マスを斬り、敵を1マス押し戻す。</p></div></div></div>
+    </div></section>
+    <section class="guide section-light" id="guide" aria-labelledby="guide-title"><div class="wrap"><div class="section-heading"><div><p class="eyebrow dark">YOUR FIRST STEP</p><h2 id="guide-title">冒険の準備は、できた？</h2></div><p>覚えることは少なく。<br>試せることは、たくさん。</p></div><div class="guide-grid"><article><span class="step-number">01</span><h3>まずは、一歩。</h3><p>PCでは矢印キー、またはマップをクリック。スマートフォンでは十字ボタンやマップのタップで移動。</p><div class="key-row" aria-label="矢印キーで移動"><kbd>←</kbd><kbd>↑</kbd><kbd>↓</kbd><kbd>→</kbd></div></article><article><span class="step-number">02</span><h3>装備を、味方に。</h3><p>手に入れた武器や盾は「持ち物・装備」から。耐久を確かめ、相手に合った一品を選ぼう。</p><span class="guide-label">拾う・装備する・強化する</span></article><article><span class="step-number">03</span><h3>ここぞで、切り札。</h3><p>歩いてスキルをチャージ。準備ができたらQキー、またはスキルボタンで武器の力を解き放とう。</p><div class="key-row"><kbd>Q</kbd><span>武器スキル</span></div></article></div><div class="save-note"><span class="tiny-diamond" aria-hidden="true"></span><p>冒険の続きは、同じブラウザから。保存した冒険はタイトル画面から再開できます。</p></div></div></section>
+    <section class="final-cta" aria-labelledby="cta-title"><img src="assets/departure.webp" alt="" width="1280" height="853" loading="lazy"><div class="cta-shade"></div><div class="cta-content"><p class="eyebrow">EVERY ADVENTURE BEGINS WITH A STEP</p><h2 id="cta-title">さあ、次の一歩へ。</h2><a class="button" href="https://charizard0711.github.io/chari-dungeon/" target="_blank" rel="noopener noreferrer">無料で冒険をはじめる</a><p>ダウンロード不要。ブラウザを開けば、そこが入り口。</p></div></section>
+
+  </main>
+  <footer class="site-footer"><a class="brand" href="./"><img src="assets/game-logo.webp" alt="ちゃりだんじょん" width="1000" height="158"></a><nav aria-label="フッターナビゲーション"><a href="game.html">ゲーム紹介</a><a href="patch-notes.html">パッチノート</a><a href="events.html">イベント情報</a><a href="#guide">遊び方</a><a href="https://charizard0711.github.io/chari-dungeon/privacy.html" target="_blank" rel="noopener noreferrer">アクセス計測について</a></nav><p>© 2026 ちゃりだんじょん</p><span class="footer-tagline">ONE MORE FLOOR. ONE MORE ADVENTURE.</span></footer>
+</body>
+</html>

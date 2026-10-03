@@ -57,3 +57,106 @@ function markDate() {
 }
 window.addEventListener('hashchange', markDate);
 markDate();
+
+// Keep existing homepage bookmarks working after moving the introduction.
+if (/(?:\/|\/index\.html)$/.test(location.pathname) && ['#about', '#world', '#weapons', '#guide'].includes(location.hash)) {
+  location.replace(`game.html${location.hash}`);
+}
+
+const carousel = document.querySelector('[data-carousel]');
+if (carousel) {
+  const viewport = carousel.querySelector('.carousel-viewport');
+  const track = carousel.querySelector('.carousel-track');
+  const slides = [...carousel.querySelectorAll('.banner')];
+  const dots = [...carousel.querySelectorAll('[data-slide]')];
+  const pause = carousel.querySelector('.carousel-pause');
+  const counter = carousel.querySelector('.carousel-counter strong');
+  const announcement = carousel.querySelector('.carousel-announcement');
+  const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+  let current = 0;
+  let stopped = reducedMotion.matches;
+  let hovered = false;
+  let inView = false;
+  let timer;
+  let pointerStart;
+  let suppressClickUntil = 0;
+
+  function schedule() {
+    clearTimeout(timer);
+    if (!stopped && !hovered && inView && !document.hidden) {
+      timer = setTimeout(() => show(current + 1), 7000);
+    }
+  }
+  function updatePlayback() {
+    pause.textContent = stopped ? '自動再生' : '一時停止';
+    pause.setAttribute('aria-label', stopped ? '自動切り替えを開始' : '自動切り替えを停止');
+    schedule();
+  }
+  function show(index, manual = false) {
+    const focusWasOnSlide = slides[current].contains(document.activeElement);
+    current = (index + slides.length) % slides.length;
+    if (manual) stopped = true;
+    track.style.transform = `translateX(-${current * 100}%)`;
+    slides.forEach((slide, i) => {
+      slide.inert = i !== current;
+      slide.setAttribute('aria-hidden', String(i !== current));
+    });
+    dots.forEach((dot, i) => {
+      if (i === current) dot.setAttribute('aria-current', 'true');
+      else dot.removeAttribute('aria-current');
+    });
+    counter.textContent = String(current + 1).padStart(2, '0');
+    if (manual) {
+      announcement.textContent = slides[current].getAttribute('aria-label');
+      if (focusWasOnSlide) slides[current].querySelector('a').focus({ preventScroll: true });
+    }
+    updatePlayback();
+  }
+
+  carousel.classList.add('is-enhanced');
+  carousel.querySelector('.carousel-controls').hidden = false;
+  show(0);
+  dots.forEach(dot => dot.addEventListener('click', () => show(Number(dot.dataset.slide), true)));
+  carousel.querySelectorAll('[data-direction]').forEach(button => {
+    button.addEventListener('click', () => show(current + Number(button.dataset.direction), true));
+  });
+  pause.addEventListener('click', () => { stopped = !stopped; updatePlayback(); });
+  carousel.addEventListener('focusin', event => {
+    if (event.target !== pause) { stopped = true; updatePlayback(); }
+  });
+  viewport.addEventListener('pointerenter', event => {
+    if (event.pointerType === 'mouse') { hovered = true; schedule(); }
+  });
+  viewport.addEventListener('pointerleave', () => { hovered = false; schedule(); });
+  carousel.addEventListener('keydown', event => {
+    if (event.altKey || event.ctrlKey || event.metaKey) return;
+    const next = { ArrowLeft: current - 1, ArrowRight: current + 1, Home: 0, End: slides.length - 1 }[event.key];
+    if (next !== undefined) { event.preventDefault(); show(next, true); }
+  });
+  viewport.addEventListener('pointerdown', event => {
+    if (event.isPrimary && event.button === 0) pointerStart = { x: event.clientX, y: event.clientY, id: event.pointerId };
+  }, { passive: true });
+  viewport.addEventListener('pointerup', event => {
+    if (!pointerStart || pointerStart.id !== event.pointerId) return;
+    const dx = event.clientX - pointerStart.x;
+    const dy = event.clientY - pointerStart.y;
+    pointerStart = undefined;
+    if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy) * 1.25) {
+      suppressClickUntil = Date.now() + 400;
+      show(current + (dx < 0 ? 1 : -1), true);
+    }
+  });
+  viewport.addEventListener('pointercancel', () => { pointerStart = undefined; });
+  viewport.addEventListener('dragstart', event => event.preventDefault());
+  viewport.addEventListener('click', event => {
+    if (Date.now() < suppressClickUntil) { event.preventDefault(); event.stopPropagation(); }
+  }, true);
+  document.addEventListener('visibilitychange', schedule);
+  reducedMotion.addEventListener('change', event => {
+    if (event.matches) { stopped = true; updatePlayback(); }
+  });
+  new IntersectionObserver(entries => {
+    inView = entries[0].intersectionRatio >= 0.35;
+    schedule();
+  }, { threshold: 0.35 }).observe(viewport);
+}
