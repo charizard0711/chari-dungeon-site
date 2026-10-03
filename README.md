@@ -40,7 +40,11 @@ npm run dev
 
 ## 公開について
 
-今回の初版はローカル用です。Gitリポジトリは初期化済みで、リモートは未設定です。`dist` の内容だけを静的ホスティングに配置できます。ビルド工程・サーバー側アプリ・データベースは不要です。GitHub Pagesのサブディレクトリ配置にも対応する相対パスで構成しています。
+公式サイトの公開先: https://charizard0711.github.io/chari-dungeon-site/
+
+専用リポジトリ: https://github.com/charizard0711/chari-dungeon-site
+
+`main` へのpushで `.github/workflows/pages.yml` が `npm run check` を実行し、成功後に `dist` の内容だけをGitHub Pagesへ公開します。GitHubのActionsから手動実行もできます。ビルド工程・サーバー側アプリ・データベースは不要です。ゲーム本体は別リポジトリで、この公開処理には含めません。
 
 「今すぐプレイ」は現在の公開ゲーム `https://charizard0711.github.io/chari-dungeon/` を開きます。サイト自身にはアクセス計測・Cookie・フォームを追加していません。
 
