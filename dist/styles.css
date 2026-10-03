@@ -18,4 +18,13 @@ h1,h2,h3{text-wrap:balance}
 @media(max-width:900px){.guide-grid p{min-height:170px}.news-card p{font-size:15px}.news-meta{flex-wrap:wrap;gap:5px 10px}.patch-layout{grid-template-columns:170px minmax(0,1fr)}}
 @media(max-width:640px){.hero-content>.eyebrow{font-size:10px;letter-spacing:.1em}.hero-platform{font-size:12px;max-width:305px;line-height:2}.hero-actions{flex-wrap:wrap;gap:16px 25px}.hero-bottom{font-size:9px}.news-card{grid-template-columns:112px minmax(0,1fr);column-gap:16px}.news-image{height:156px}.news-card p{font-size:14px}.news-meta{font-size:12px}.card-read{font-size:12px}.news-badge{font-size:10px}.hero-content{padding-top:125px}.world-regions>div,.world-regions>div:first-child{grid-template-columns:89px 1fr;gap:4px 9px}.world-regions p{font-size:12px}.weapon-footnote{font-size:12px}.weapon-caption{min-height:0}.guide-grid p{min-height:0}.patch-nav a{font-size:13px}.patch-sidebar>p:last-child{font-size:12px}.patch-date{font-size:12px}.patch-date time{font-size:14px}.patch-section li,.patch-lead{font-size:16px}.patch-table{font-size:14px;min-width:470px}.patch-table-wrap{margin-inline:-2px}.site-footer nav{font-size:13px}.brand span{font-size:9px}.gameplay-frame figcaption>span:last-child{display:none}.cta-content>p:last-child{max-width:300px;margin-inline:auto}.cta-content .eyebrow{font-size:10px}.eyebrow{letter-spacing:.13em}}
 @media(max-width:370px){.hero-content{padding-top:100px}.hero-content>.eyebrow{font-size:9px}.hero-platform{font-size:12px}.hero-bottom{font-size:8px}.news-card{grid-template-columns:92px minmax(0,1fr);column-gap:14px}.news-image{height:166px}.news-meta{font-size:11px}}
+/* Keep the swordsman and the floor-15 boss visible together. */
+.hero--behemoth .hero-art{object-position:68% center}
+.hero--behemoth .hero-shade{background:linear-gradient(90deg,rgba(4,17,23,.85) 0%,rgba(5,21,26,.66) 31%,rgba(6,19,22,.12) 56%,transparent 80%),linear-gradient(0deg,rgba(7,24,29,.78),transparent 35%)}
+@media(max-width:640px){
+  .hero--behemoth{height:auto;min-height:820px;padding-bottom:88px}
+  .hero--behemoth .hero-art{height:440px;object-position:72% center}
+  .hero--behemoth .hero-shade{background:linear-gradient(180deg,transparent 180px,rgba(7,24,29,.12) 280px,rgba(7,24,29,.88) 400px,#07181d 460px)}
+  .hero--behemoth .hero-content{padding-top:355px}
+}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}}

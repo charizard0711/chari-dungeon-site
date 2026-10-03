@@ -1,5 +1,17 @@
 # 画像素材
 
+## トップ画像の差し替え — 氷晶王ベヒーモス
+
+ユーザー指定により、トップを「剣士が15階層のボスに立ち向かう場面」に変更しました。
+
+- 現在のトップ画像: `dist/assets/hero-behemoth-v2.webp`（1672×941）。
+- 内蔵 `image_gen` を使用し、参照画像3点から1回生成。WebP圧縮して配置。
+- ボスはゲームの `src/scenes/GameScene.ts` にある15階の「氷晶王ベヒーモス」（`m_ice_behemoth`）を確認。
+- ボスの正面・方向別スプライトと、既存の冒険者イラストを参照。氷晶の巨腕を振り上げるボスに、茶髪・青緑のマントの剣士が両手の銀剣で対峙する構図。
+- プロンプト: [behemoth-hero-prompt.txt](behemoth-hero-prompt.txt)。凍った地下闘技場、砕ける氷、蒼色の光、手描きの日本ファンタジー画調。文字・UIなし。
+- 原本: `C:\Users\masam\.codex\generated_images\01a0ff8d-b1d7-7620-a364-e7b6af5d04b7\exec-dc62fb9e-a804-417f-9ccc-47ebdff5ae67.png`。
+- 旧トップの `hero.webp` は保存。スマホでは対峙する2体が上部に見える配置に調整。
+
 ## 新規イラスト
 
 内蔵 `image_gen` で2枚を生成。各1回、再生成なし。透過なし、原寸1672×941。Web表示用にWebPへ圧縮しています。
