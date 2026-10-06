@@ -137,3 +137,15 @@
 @media(prefers-reduced-motion:reduce) {
   .carousel.is-enhanced .carousel-track, .carousel-dot span { transition: none; }
 }
+
+.event-details { padding: 64px 0; background: #07181d; color: #e6dfd1; }
+.event-details .wrap { max-width: 960px; }
+.event-details .patch-section { margin-bottom: 42px; }
+.event-live { font-size: clamp(48px, 7vw, 92px); }
+.event-message .button { margin: 15px 0; }
+@media(max-width:600px) { .event-details { padding: 40px 0; } .event-coming.event-live { font-size: 55px; } }
+
+.event-details .patch-section li { color: #cbd8d8; }
+.event-details .patch-section h3 { color: #f1dfb5; }
+.event-details .patch-section a { color: #f1dfb5; text-decoration: underline; }
+@media(max-width:640px) { .patch-nav { flex-wrap: wrap; } .patch-nav a { flex: 1 1 28%; } }

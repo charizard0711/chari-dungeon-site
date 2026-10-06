@@ -52,7 +52,7 @@ tabs.forEach((tab, index) => {
 
 const dateLinks = [...document.querySelectorAll('.patch-nav a')];
 function markDate() {
-  const hash = !location.hash || location.hash === '#next-update' ? '#2026-10-03-expansion' : location.hash;
+  const hash = !location.hash ? '#2026-10-06' : location.hash === '#next-update' ? '#2026-10-03-expansion' : location.hash;
   dateLinks.forEach(link => { if (link.hash === hash) link.setAttribute('aria-current', 'location'); else link.removeAttribute('aria-current'); });
 }
 window.addEventListener('hashchange', markDate);
