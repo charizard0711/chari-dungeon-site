@@ -149,3 +149,9 @@
 .event-details .patch-section h3 { color: #f1dfb5; }
 .event-details .patch-section a { color: #f1dfb5; text-decoration: underline; }
 @media(max-width:640px) { .patch-nav { flex-wrap: wrap; } .patch-nav a { flex: 1 1 28%; } }
+
+.event-equipment { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+.event-equipment figure { margin: 0; padding: 24px 12px; text-align: center; background: #10272d; border: 1px solid #536466; }
+.event-equipment img { display: block; width: 100%; height: 240px; object-fit: contain; margin: 0 auto 18px; }
+.event-equipment figcaption { font-family: var(--serif); color: #f1dfb5; font-size: 22px; }
+@media(max-width:640px) { .event-equipment { gap: 12px; } .event-equipment img { height: 150px; } .event-equipment figcaption { font-size: 17px; } }
