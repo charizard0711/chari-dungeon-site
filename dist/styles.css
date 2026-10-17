@@ -48,3 +48,11 @@ h1,h2,h3{text-wrap:balance}
   .site-header .brand,.site-header .brand img{width:145px}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}}
+
+/* Windows friend-test download, below the browser-game invitation. */
+.skyward-download{padding:72px 0;text-align:center;background:linear-gradient(135deg,#102b35,#071317);border-block:1px solid var(--line)}
+.skyward-download h2{font-family:var(--serif);font-size:clamp(26px,4vw,42px);font-weight:500;letter-spacing:.06em;margin:0 0 18px;color:var(--gold)}
+.skyward-download h2 span{display:block;font-family:var(--sans);font-size:16px;color:#f7f4eb;letter-spacing:.12em;margin-top:8px}
+.skyward-download p{max-width:760px;margin:0 auto 28px}.skyward-download .eyebrow{margin-bottom:16px}.skyward-download .button{margin:8px 0 26px;max-width:100%;min-width:0}
+.skyward-download .download-spec{font-size:13px;color:#b5cbd0;margin-bottom:16px}.skyward-download .download-help{font-size:13px;color:#b5cbd0;margin-bottom:0}
+@media(max-width:640px){.skyward-download{padding:48px 0}.skyward-download>.wrap{width:calc(100% - 40px)}.skyward-download p{font-size:14px}.skyward-download .download-spec,.skyward-download .download-help{font-size:12px}.skyward-download .button{font-size:14px;padding-inline:18px}}
